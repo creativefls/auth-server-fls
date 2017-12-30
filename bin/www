@@ -16,6 +16,8 @@ require("dotenv").config();
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+console.log('Kuasa port', port)
+
 /**
  * Create HTTP server.
  */
