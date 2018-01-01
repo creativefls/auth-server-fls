@@ -14,7 +14,7 @@ function hashPassword(password, salt){
 
 // hash password dengan salt baru yang di generate
 function saltHashPassword(userpassword) {
-  const salt = shortid.generate();; /** Gives us salt of length 16 */
+  const salt = shortid.generate();
   const hash = hashPassword(userpassword, salt);
   return {
     hash: hash,
@@ -40,8 +40,8 @@ module.exports = {
         res.send(err);
       } else {
         res.send({
-          success : true,
-          status : "OK",
+          success: true,
+          status: "OK",
           message: "user " + user.username + " berhasil ditambahkan"
         });
       }
