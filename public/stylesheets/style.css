@@ -1,4 +1,8 @@
 .hero-foot.is-primary-dark {
   background-color: #463272;
-  padding: 16px !important;
+  padding: 6px !important;
+  font-size: 12px;
+}
+.navbar-item img { 
+  max-height: 2.2rem; 
 }
