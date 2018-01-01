@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+let userController = require("../controllers/userController.js");
+
+// akan dipanggil dengan route /api/blablabla
+router.get('/user', userController.showMe);
 
 module.exports = router;

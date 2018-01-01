@@ -81,14 +81,27 @@ module.exports = {
               status: "ERROR",
               message: "Authentication failed. Wrong password."
             });
+          } else if (user.isBanned) {
+            res.json({
+              success: false,
+              status: "ERROR",
+              message: "Authentication failed. User got banned. Please Call Admin."
+            });
           } else {
-             var token = jwt.sign({ user: user[0] }, process.env.JWT_SECRET);
+            var token = jwt.sign(
+              {
+                username: user.username,
+                email: user.email
+              },
+              process.env.JWT_SECRET,
+              { expiresIn: '1d' }
+            );
 
-             res.json({
-               success: true,
-               msg: "login success",
-               token: token
-             });
+            res.json({
+              success: true,
+              msg: "login success",
+              token: token
+            });
           }
         }
       })
