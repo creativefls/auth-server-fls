@@ -82,7 +82,7 @@ module.exports = {
               message: "Authentication failed. Wrong password."
             });
           } else {
-             var token = jwt.sign({ user: user[0] }, 'rahasia');
+             var token = jwt.sign({ user: user[0] }, process.env.JWT_SECRET);
 
              res.json({
                success: true,
