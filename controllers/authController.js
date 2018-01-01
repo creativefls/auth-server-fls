@@ -1,12 +1,7 @@
-let crypto = require("crypto");
+const crypto = require("crypto");
+const shortid = require("shortid");
 
 let User = require("../models/user");
-
-function genRandomString(length){
-  return crypto.randomBytes(Math.ceil(length/2))
-    .toString('hex') /** convert to hexadecimal format */
-    .slice(0,length);   /** return required number of characters */
-};
 
 function hashPassword(password, salt){
   let hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
@@ -16,8 +11,8 @@ function hashPassword(password, salt){
 };
 
 function saltHashPassword(userpassword) {
-  let salt = genRandomString(16); /** Gives us salt of length 16 */
-  let hash = hashPassword(userpassword, salt);
+  const salt = shortid.generate();; /** Gives us salt of length 16 */
+  const hash = hashPassword(userpassword, salt);
   return {
     hash: hash,
     salt: salt
