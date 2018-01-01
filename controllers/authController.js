@@ -34,18 +34,16 @@ module.exports = {
         fullName: req.body.fullName
       }
     });
-    var result = {
-      success : false,
-      status : "ERROR",
-      user: user
-    }
+
     user.save(function(err) {
       if (err) {
         res.send(err);
       } else {
-        result.success = true
-        result.status = "OK"
-        res.send(result);
+        res.send({
+          success : true,
+          status : "OK",
+          message: "user " + user.username + " berhasil ditambahkan"
+        });
       }
     });
   },
