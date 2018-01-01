@@ -6,6 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs')
 
+// koneksi mongo
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost/akufls");
+
 var web = require('./routes/web');
 var api = require('./routes/api');
 var auth = require('./routes/auth');
