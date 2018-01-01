@@ -6,7 +6,6 @@ let userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     salt: String,
     isAdmin: { type: Boolean, default: false}, // is this user a mimin ?
-    isRangerNow: { type: Boolean, default: false}, // is this user an FLS ranger now ?
     isActive: { type: Boolean, default: false}, // is this user active in using this system ?
     isBanned: { type: Boolean, default: false}, // is this user has been banned ?
     info: {
