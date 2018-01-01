@@ -6,6 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs')
 
+const swaggerUi = require("swagger-ui-express");
+// './swagger.json' refers to the api documentation file generated through postman and converted through Apimatic
+// it could be named anything else e.g. converted.json or api-docs.json
+const swaggerDocument = require('./swagger.json');
+
 require("dotenv").config();
 
 // koneksi mongo
@@ -24,6 +29,9 @@ hbs.registerPartials(path.join(__dirname + "/views/partials"));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+// '/api-docs' refers to the url or route path through which the documentation is to be served
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
