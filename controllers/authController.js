@@ -112,8 +112,8 @@ module.exports = {
         res.status(401).send(err)
       } else {
         User.findById(decoded.sub, function (err, user) {
-          // FIXME: kalo user id ga ketemu kok ga err
           if (err) return res.status(500).send(err)
+          if (!user) return res.status(500).send({ message: 'user tidak ditemukan' })
           res.json({
             id: user.id,
             username: user.username,
