@@ -7,6 +7,13 @@ let mongoose = require('mongoose');
 
 require("dotenv").config();
 
+
+const indexRouter = require('./routes/index')
+const authRouter = require('./routes/auth')
+const userRouter = require('./routes/user')
+
+var app = express();
+
 // koneksi mongo
 let mongoUrl = process.env.MONGO_STRING || 'mongodb://localhost:27017/akufls'
 
@@ -19,11 +26,6 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true }, function (err) {
   }
 });
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -34,8 +36,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// route
+app.use('/ping', function (req, res) {
+  res.json('pong')
+})
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/auth', authRouter)
+app.use('/api/user', userRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
