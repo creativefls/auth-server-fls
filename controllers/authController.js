@@ -113,7 +113,7 @@ module.exports = {
       } else {
         User.findById(decoded.sub, function (err, user) {
           if (err) return res.status(500).send(err)
-          if (!user) return res.status(500).send({ message: 'user tidak ditemukan' })
+          if (!user) return res.status(500).send({ message: 'user not found' })
           res.json({
             id: user.id,
             username: user.username,
