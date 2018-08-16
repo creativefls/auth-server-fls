@@ -4,9 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 let mongoose = require('mongoose');
+var expressHbs = require('express-handlebars');
 
 require("dotenv").config();
-
 
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
@@ -27,8 +27,9 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true }, function (err) {
 });
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, 'views'));
+app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
