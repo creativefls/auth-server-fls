@@ -3,30 +3,36 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Organisasi Pemuda Indonesia">
+  <meta name="author" content="Nusantaramuda">
   <meta name="msapplication-tap-highlight" content="no" />
 
-  <link rel="icon" type="image/png" href="assets/img/favicon-16x16.png" sizes="16x16">
-  <link rel="icon" type="image/png" href="assets/img/favicon-32x32.png" sizes="32x32">
-
   <title>Aku</title>
-
-  <!-- UIkit CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css" />
-
-  <!-- UIkit JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+  <!-- Favicon -->
+  <link href="/assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Argon CSS -->
+  <link type="text/css" href="/assets/css/argon.css?v=1.0.0" rel="stylesheet">
 </head>
 
 <body>
-  <div class="uk-scope">
     {{> header }}
 
-    <div class="uk-container">
-      {{{body}}}
-    </div>
+    {{{body}}}
 
-  </div>
+    {{> footer }}
+
+    <!-- Core -->
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/popper/popper.min.js"></script>
+    <script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/vendor/headroom/headroom.min.js"></script>
+    <!-- Argon JS -->
+    <script src="/assets/js/argon.js?v=1.0.0"></script>
 </body>
 </html>
