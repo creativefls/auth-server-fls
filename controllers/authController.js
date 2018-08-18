@@ -48,14 +48,14 @@ module.exports = {
     });
   },
   login: function(req, res, next) {
-    if (req.body.username == "" || req.body.password == "") {
+    if (req.body.email == "" || req.body.password == "") {
       res.status(400).json({
         success: false,
         status: "ERROR",
-        message: "Username and Password can not empty"
+        message: "Email and Password can not empty"
       });
     } else {
-      User.findOne({ username: req.body.username }, function(err, user) {
+      User.findOne({ email: req.body.email }, function(err, user) {
         if (err) {
           console.log("Error when trying to login : ", err);
 
