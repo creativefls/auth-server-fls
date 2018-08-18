@@ -26,7 +26,7 @@ module.exports = {
   register: function(req, res, next) {
     let passwordData = saltHashPassword(req.body.password)
     let user = new User({
-      // username: req.body.username,
+      username: req.body.email.split('@')[0] + '--' + Math.random().toString(36).substr(5),
       email: req.body.email,
       password: passwordData.hash,
       salt: passwordData.salt,
@@ -42,7 +42,7 @@ module.exports = {
         res.send({
           success: true,
           status: "OK",
-          message: "user " + user.username + " berhasil ditambahkan"
+          message: "user " + user.info.fullName + " berhasil ditambahkan"
         });
       }
     });
