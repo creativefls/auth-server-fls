@@ -26,7 +26,7 @@ module.exports = {
   register: function(req, res, next) {
     let passwordData = saltHashPassword(req.body.password)
     let user = new User({
-      username: req.body.username,
+      // username: req.body.username,
       email: req.body.email,
       password: passwordData.hash,
       salt: passwordData.salt,
