@@ -1,28 +1,10 @@
-const crypto = require("crypto");
-const shortid = require("shortid");
-
 var jwt = require("jsonwebtoken");
 
 let User = require("../models/user");
-
-function hashPassword(password, salt){
-  let hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
-  hash.update(password);
-  let value = hash.digest('hex');
-  return value;
-};
-
-// hash password dengan salt baru yang di generate
-function saltHashPassword(userpassword) {
-  const salt = shortid.generate();
-  const hash = hashPassword(userpassword, salt);
-  return {
-    hash: hash,
-    salt: salt
-  };
-}
+let { hashPassword, saltHashPassword } = require('../utils/auth')
 
 module.exports = {
+  // register user
   register: function(req, res, next) {
     let passwordData = saltHashPassword(req.body.password)
     let user = new User({
@@ -47,6 +29,8 @@ module.exports = {
       }
     });
   },
+
+  // login user
   login: function(req, res, next) {
     if (req.body.email == "" || req.body.password == "") {
       res.status(400).json({
@@ -106,6 +90,8 @@ module.exports = {
       })
     }
   },
+
+  // show user indormation based on token used in request header
   pingMe: function (req, res, next) {
     jwt.verify(req.headers.authorization, process.env.JWT_SECRET, function (err, decoded) {
       if (err) {
