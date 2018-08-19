@@ -1,5 +1,5 @@
-const crypto = require("crypto");
-const shortid = require("shortid");
+const crypto = require('crypto');
+const shortid = require('shortid');
 
 function hashPassword (password, salt){
   let hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */

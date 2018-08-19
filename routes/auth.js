@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-let authController = require("../controllers/authController");
+let authController = require('../controllers/authController');
 
 // akan dipanggil dengan route /api/auth/blablabla
 router.get('/', authController.pingMe);

@@ -6,7 +6,7 @@ var logger = require('morgan');
 let mongoose = require('mongoose');
 var expressHbs = require('express-handlebars');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')

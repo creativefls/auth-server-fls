@@ -1,4 +1,4 @@
-let mongoose = require("mongoose");
+let mongoose = require('mongoose');
 
 let userSchema = new mongoose.Schema({
     username: { type: String, unique: true },
@@ -19,4 +19,4 @@ let userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);

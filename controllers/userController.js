@@ -1,4 +1,4 @@
-let User = require("../models/user");
+let User = require('../models/user');
 
 module.exports = {
   index: function(req, res, next) {

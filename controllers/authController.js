@@ -1,6 +1,7 @@
-var jwt = require("jsonwebtoken");
+var jwt = require('jsonwebtoken');
+const speakeasy = require('speakeasy')
 
-let User = require("../models/user");
+let User = require('../models/user');
 let { hashPassword, saltHashPassword } = require('../utils/auth')
 
 module.exports = {
@@ -23,8 +24,8 @@ module.exports = {
       } else {
         res.send({
           success: true,
-          status: "OK",
-          message: "user " + user.info.fullName + " berhasil ditambahkan"
+          status: 'OK',
+          message: 'user ' + user.info.fullName + ' berhasil ditambahkan'
         });
       }
     });
@@ -32,27 +33,27 @@ module.exports = {
 
   // login user
   login: function(req, res, next) {
-    if (req.body.email == "" || req.body.password == "") {
+    if (req.body.email == '' || req.body.password == '') {
       res.status(400).json({
         success: false,
-        status: "ERROR",
-        message: "Email and Password can not empty"
+        status: 'ERROR',
+        message: 'Email and Password can not empty'
       });
     } else {
       User.findOne({ email: req.body.email }, function(err, user) {
         if (err) {
-          console.log("Error when trying to login : ", err);
+          console.log('Error when trying to login : ', err);
 
           res.status(500).json({
             success: false,
-            status: "ERROR",
+            status: 'ERROR',
             message: err
           });
         } else if (!user) {
           res.status(400).json({
             success: false,
-            status: "ERROR",
-            message: "Authentication failed. User not found."
+            status: 'ERROR',
+            message: 'Authentication failed. User not found.'
           });
         } else if (user) {
           let reqPasswordData = hashPassword(req.body.password, user.salt);
@@ -60,14 +61,14 @@ module.exports = {
           if(user.password != reqPasswordData){
             res.status(403).json({
               success: false,
-              status: "ERROR",
-              message: "Authentication failed. Wrong password."
+              status: 'ERROR',
+              message: 'Authentication failed. Wrong password.'
             });
           } else if (user.banned.status) {
             res.status(403).json({
               success: false,
-              status: "ERROR",
-              message: "Authentication failed. User got banned. Please Call Admin."
+              status: 'ERROR',
+              message: 'Authentication failed. User got banned. Please Call Admin.'
             });
           } else {
             var token = jwt.sign(
@@ -82,7 +83,7 @@ module.exports = {
 
             res.json({
               success: true,
-              msg: "login success",
+              msg: 'login success',
               token: token
             });
           }
@@ -114,4 +115,12 @@ module.exports = {
       }
     });
   },
+
+  verifyEmail: function (req, res, next) {
+    let veified = speakeasy.totp.verify({
+      secret: 'asdf',
+      encoding: 'base32',
+      token: 'asdf'
+    })
+  }
 };
