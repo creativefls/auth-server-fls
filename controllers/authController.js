@@ -1,5 +1,4 @@
 var jwt = require('jsonwebtoken');
-const speakeasy = require('speakeasy')
 
 let User = require('../models/user');
 let { hashPassword, saltHashPassword } = require('../utils/auth')
@@ -117,10 +116,6 @@ module.exports = {
   },
 
   verifyEmail: function (req, res, next) {
-    let veified = speakeasy.totp.verify({
-      secret: 'asdf',
-      encoding: 'base32',
-      token: 'asdf'
-    })
+    // TODO:
   }
 };
