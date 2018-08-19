@@ -18,4 +18,7 @@ function saltHashPassword (userpassword) {
   };
 }
 
-module.exports = { hashPassword, saltHashPassword }
+module.exports = {
+  hashPassword,
+  saltHashPassword
+}

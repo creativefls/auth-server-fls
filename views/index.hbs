@@ -55,7 +55,10 @@
                   <div class="text-center text-muted mb-4">
                     <small>Or sign up with credentials</small>
                   </div>
+
+{{!-- form register --}}
                   <form role="form" method="POST" action="/api/auth/register">
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
                     <div class="form-group">
                       <div class="input-group input-group-alternative mb-3">
                         <div class="input-group-prepend">
@@ -107,6 +110,7 @@
                       <button type="submit" class="btn btn-primary mt-4">Create account</button>
                     </div>
                   </form>
+
                 </div>
               </div>
             </div>
