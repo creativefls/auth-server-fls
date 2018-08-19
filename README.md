@@ -16,10 +16,12 @@
 - Coba API dengan Postman. tersedia `postman_collection.json`
 
 # Cara Kerja
-- client request ke auth server
-- server memberi balikan token jwt dengan secret yang ditentukan
-- token bisa digunakan untuk request ke app server dengan auth sesuai jwt secret
+- register akun di halaman `/` menggunakan html form
+- login -> client request ke auth server
+  - server memberi balikan token jwt dengan secret yang ditentukan
+  - token bisa digunakan untuk request ke app server dengan auth sesuai jwt secret
 
 # Pengembangan ke depan
 
+:white_medium_square: otp verifikasi email
 :white_medium_square: implement oauth2 flow
