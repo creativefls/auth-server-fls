@@ -6,59 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "register",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "fullName",
-							"value": "nama lengkap",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "wkwkcoba",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "wkwkwk",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "wkwk@fls.com",
-							"description": "",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{baseUrl}}/api/auth/register",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"api",
-						"auth",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "login",
 			"request": {
 				"method": "POST",
@@ -72,8 +19,8 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "username",
-							"value": "wkwkcoba",
+							"key": "email",
+							"value": "wkasdf@email.com",
 							"description": "",
 							"type": "text"
 						},
@@ -100,7 +47,7 @@
 			"response": []
 		},
 		{
-			"name": "ping",
+			"name": "me",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -110,7 +57,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YjU5ZGZlMzI2ZmViNDc5NGM3MTJlOTciLCJuYW1lIjoibmFtYSBsZW5na2FwIiwicm9sZXMiOltdLCJpYXQiOjE1MzI2MTY2ODQsImV4cCI6MTUzMjcwMzA4NH0.quSCF03jaY0YRmaSAQt-yk8H3A_CvlJpTZygDjZArv4"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YjU5ZGZlMzI2ZmViNDc5NGM3MTJlOTciLCJuYW1lIjoibmFtYSBsZW5na2FwIiwicm9sZXMiOltdLCJpYXQiOjE1MzM5OTg3ODUsImV4cCI6MTUzNDA4NTE4NX0.xMloRNl66DVzpXShtKQdYx8m8LArhv8y-GRixGFM6po"
 					}
 				],
 				"body": {
