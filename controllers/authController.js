@@ -100,15 +100,17 @@ module.exports = {
         User.findById(decoded.sub, function (err, user) {
           if (err) return res.status(500).send(err)
           res.json({
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            emailVerified: user.emailVerified,
-            roles: user.roles,
-            info: user.info,
-            banned: user.banned,
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt
+            user: {
+              id: user.id,
+              username: user.username,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              roles: user.roles,
+              info: user.info,
+              banned: user.banned,
+              createdAt: user.createdAt,
+              updatedAt: user.updatedAt
+            }
           })
         })
       }
