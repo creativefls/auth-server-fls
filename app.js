@@ -9,7 +9,7 @@ var cors = require('cors');
 
 require('dotenv').config();
 
-const config = require('./config')
+const { corsOptions } = require('./config')
 
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
@@ -34,7 +34,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true }, function (err) {
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-app.use(cors({origin: config.allowedOrigin}))
+app.use(cors(corsOptions))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
