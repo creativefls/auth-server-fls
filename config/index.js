@@ -4,7 +4,10 @@ let allowedOrigin = () => {
     /\.futureleadersummit\.org$/,
     /\.nusantaramuda\.org$/
   ]
-  if (process.env.ENV == 'dev') whiteList.push('http://localhost:3000')
+  if (process.env.ENV == 'dev') {
+    whiteList.push('http://localhost:3000')
+    whiteList.push('http://localhost:80')
+  }
   return whiteList
 }
 
