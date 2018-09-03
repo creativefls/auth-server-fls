@@ -21,11 +21,6 @@ module.exports = {
       if (err) {
         res.status(500).send(err);
       } else {
-        // res.send({
-        //   success: true,
-        //   status: 'OK',
-        //   message: 'user ' + user.info.fullName + ' berhasil ditambahkan'
-        // });
         res.render('thankyou-register', { email: user.email })
       }
     });
