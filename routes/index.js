@@ -5,7 +5,7 @@ const { csrfProtection } = require('../middleware/authMiddleware')
 
 /* GET home page. */
 router.get('/', csrfProtection, function(req, res, next) {
-  res.render('index', { title: 'Aku Muda', csrfToken: req.csrfToken() });
+  res.render('index', { title: 'Aku Nusantara Muda', csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
