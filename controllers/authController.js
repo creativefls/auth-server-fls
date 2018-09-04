@@ -13,7 +13,8 @@ module.exports = {
       password: passwordData.hash,
       salt: passwordData.salt,
       info: {
-        fullName: req.body.fullName
+        fullName: req.body.fullName,
+        avatar: 'https://img.devidentify.com/' + req.body.email
       }
     });
 
