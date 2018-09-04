@@ -74,7 +74,7 @@ module.exports = {
                 roles: user.roles
               },
               process.env.JWT_SECRET,
-              { expiresIn: '1d' }
+              { expiresIn: '30d' }
             );
 
             res.json({
