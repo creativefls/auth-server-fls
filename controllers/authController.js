@@ -116,5 +116,40 @@ module.exports = {
 
   verifyEmail: function (req, res, next) {
     // TODO:
+  },
+
+  changePassword: async function (req, res) {
+    const token = req.headers.authorization
+    const oldPass = req.body.oldPass
+    const newPass = req.body.newPass
+
+    try {
+      const jwtPayload = jwt.verify(token, process.env.JWT_SECRET)
+      const userId = jwtPayload.sub
+
+      let userInfo = await User.findById(userId)
+      let reqPasswordData = hashPassword(oldPass, userInfo.salt);
+      let reqNewPasswordData = hashPassword(newPass, userInfo.salt);
+
+      /* TODO: handle kondisi
+        * kalau user banned
+        * kalau oldPass sama dengan newPass
+      */
+      if(userInfo.password != reqPasswordData) {
+        throw {
+          status: 403,
+          name: 'http',
+          message: 'Authentication failed. Wrong password'
+        }
+      } else {
+        let result = await User.findByIdAndUpdate(userId, { password: reqNewPasswordData })
+        res.send(result)
+      }
+    } catch (error) {
+      res.status(error.status || 500).send({
+        error: error.name,
+        message: error.message
+      })
+    }
   }
 };
