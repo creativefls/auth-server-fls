@@ -1,7 +1,11 @@
-let { findAllUsers, updateUserRoleById } = require('../factory');
+let {
+  findAllUsers,
+  updateUserRoleById,
+  patchUserInfo
+} = require('../factory');
 
 module.exports = {
-  index: async function(req, res, next) {
+  index: async function(req, res) {
     try {
       let result = await findAllUsers()
       res.send(result)
@@ -12,16 +16,31 @@ module.exports = {
       })
     }
   },
-  updateRole: async function (req, res, next) {
+  updateRole: async function (req, res) {
+    let userId = req.params.id
+    let roles = req.body.roles
+
     try {
-      let userId = req.params.id
-      let roles = req.body.roles
       let result = await updateUserRoleById(userId, roles)
       res.send(result)
     } catch (error) {
       res.status(500).send({
         message: error.message,
-        reason: error
+        detail: error
+      })
+    }
+  },
+  updateInfo: async function (req, res) {
+    let userId = req.params.id
+    let userInfo = req.body
+
+    try {
+      let result = await patchUserInfo(userId, userInfo)
+      res.send(result)
+    } catch (error) {
+      res.status(500).send({
+        message: error.message,
+        detail: error
       })
     }
   }

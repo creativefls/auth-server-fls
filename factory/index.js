@@ -22,7 +22,20 @@ async function updateUserRoleById (userId, roles = []) {
   return await User.findByIdAndUpdate(userId, { roles }, { new: true })
 }
 
+async function patchUserInfo (userId, payload) {
+  let userInfo = {}
+
+  for (const key in payload) {
+    if (payload.hasOwnProperty(key)) {
+      userInfo['info.' + key] = payload[key]
+    }
+  }
+
+  return await User.findByIdAndUpdate(userId, userInfo, { new: true })
+}
+
 module.exports = {
   findAllUsers,
-  updateUserRoleById
+  updateUserRoleById,
+  patchUserInfo
 }
