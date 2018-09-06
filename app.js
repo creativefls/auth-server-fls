@@ -34,7 +34,9 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true }, function (err) {
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-app.use(cors(corsOptions))
+// FIXME: setup lagi cors biar aman
+// app.use(cors(corsOptions))
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
