@@ -66,6 +66,12 @@ module.exports = {
               status: 'ERROR',
               message: 'Authentication failed. User got banned. Please Call Admin.'
             });
+          } else if (user.roles.length < 1) {
+            res.status(403).json({
+              success: false,
+              status: 'ERROR',
+              message: 'Authentication failed. Roles not found. Please Call Admin.'
+            });
           } else {
             var token = jwt.sign(
               {
