@@ -5,7 +5,7 @@ let { hashPassword, saltHashPassword } = require('../utils/auth')
 
 module.exports = {
   // register user
-  register: function(req, res, next) {
+  register: function (req, res, next) {
     let passwordData = saltHashPassword(req.body.password)
     let user = new User({
       username: req.body.email.split('@')[0] + '--' + Math.random().toString(36).substr(5),
@@ -14,11 +14,11 @@ module.exports = {
       salt: passwordData.salt,
       info: {
         fullName: req.body.fullName,
-        avatar: 'https://img.devidentify.com/' + req.body.email
+        avatar: 'https://ui-avatars.com/api/?name=' + req.body.fullName
       }
     });
 
-    user.save(function(err) {
+    user.save(function (err) {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   // login user
-  login: function(req, res, next) {
+  login: function (req, res, next) {
     if (req.body.email == '' || req.body.password == '') {
       res.status(400).json({
         success: false,
@@ -36,7 +36,7 @@ module.exports = {
         message: 'Email and Password can not empty'
       });
     } else {
-      User.findOne({ email: req.body.email }, function(err, user) {
+      User.findOne({ email: req.body.email }, function (err, user) {
         if (err) {
           console.log('Error when trying to login : ', err);
 
@@ -54,7 +54,7 @@ module.exports = {
         } else if (user) {
           let reqPasswordData = hashPassword(req.body.password, user.salt);
 
-          if(user.password != reqPasswordData){
+          if (user.password != reqPasswordData) {
             res.status(403).json({
               success: false,
               status: 'ERROR',
@@ -79,7 +79,7 @@ module.exports = {
                 name: user.info.fullName,
                 roles: user.roles
               },
-              process.env.JWT_SECRET,
+              'rahasia',
               { expiresIn: '30d' }
             );
 
@@ -96,7 +96,7 @@ module.exports = {
 
   // show user indormation based on token used in request header
   pingMe: function (req, res, next) {
-    jwt.verify(req.headers.authorization, process.env.JWT_SECRET, function (err, decoded) {
+    jwt.verify(req.headers.authorization.split(' ')[1], process.env.JWT_SECRET, function (err, decoded) {
       if (err) {
         res.status(401).send(err)
       } else {
@@ -124,6 +124,15 @@ module.exports = {
     // TODO:
   },
 
+  registMany: async function (req, res) {
+    try {
+      console.log(req.body);
+      return await res.json({'ok':'berhasil'});
+    } catch (error) {
+      return await res.json({'ok':'gagal'});
+    }
+  },
+
   changePassword: async function (req, res) {
     const token = req.headers.authorization
     const oldPass = req.body.oldPass
@@ -141,7 +150,7 @@ module.exports = {
         * kalau user banned
         * kalau oldPass sama dengan newPass
       */
-      if(userInfo.password != reqPasswordData) {
+      if (userInfo.password != reqPasswordData) {
         throw {
           status: 403,
           name: 'http',

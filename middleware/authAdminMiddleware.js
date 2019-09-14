@@ -2,8 +2,10 @@ var jwt = require('jsonwebtoken')
 
 module.exports = function (req, res, next) {
   if (req.headers.authorization) {
-    var token = req.headers.authorization
+    var token = req.headers.authorization.split(' ')[1]
+    console.log(token);
     jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
+      console.log(decoded)
       if (err) {
         res.status(403).json({
           message: err.message,
