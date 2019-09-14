@@ -5,7 +5,7 @@ let userController = require('../controllers/userController');
 
 // akan dipanggil dengan route /api/users/blablabla
 router.get('/', userController.index)
-router.patch('/:id/roles', checkAdmin, userController.updateRole)
-router.patch('/:id/info', checkAdmin, userController.updateInfo)
+router.put('/:id/roles', checkAdmin, userController.updateRole)
+router.put('/:id/info', checkAdmin, userController.updateInfo)
 
 module.exports = router;
