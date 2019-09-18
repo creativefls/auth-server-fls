@@ -18,6 +18,10 @@ async function findAllUsers () {
   })
 }
 
+async function findOne (id) {
+  return await User.findById(id);
+}
+
 async function updateUserRoleById (userId, roles = []) {
   return await User.findByIdAndUpdate(userId, { roles }, { new: true })
 }
@@ -36,6 +40,7 @@ async function patchUserInfo (userId, payload) {
 
 module.exports = {
   findAllUsers,
+  findOne,
   updateUserRoleById,
   patchUserInfo
 }
