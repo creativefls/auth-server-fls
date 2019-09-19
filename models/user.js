@@ -16,6 +16,7 @@ let userSchema = new mongoose.Schema({
     nickName: String,
     avatar: String,
     about: String,
+    university: String,
     reregistration: Boolean,
     room: String
   }

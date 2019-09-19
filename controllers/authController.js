@@ -142,6 +142,7 @@ module.exports = {
             avatar: 'https://ui-avatars.com/api/?name=' + item.fullName,
             university: item.university,
             room: item.room,
+	    reregistration: item.reregistration
           }
         })        
       })
