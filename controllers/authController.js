@@ -136,6 +136,7 @@ module.exports = {
           email: item.email,
           password: passwordData.hash,
           salt: passwordData.salt,
+          roles: [item.role],
           info: {
             fullName: item.fullName,
             avatar: 'https://ui-avatars.com/api/?name=' + item.fullName,
