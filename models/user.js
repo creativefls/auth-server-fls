@@ -15,7 +15,8 @@ let userSchema = new mongoose.Schema({
     fullName: String,
     nickName: String,
     avatar: String,
-    about: String
+    about: String,
+    reregistration: Boolean
   }
 }, {
     timestamps: true

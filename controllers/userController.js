@@ -45,7 +45,6 @@ module.exports = {
   updateInfo: async function (req, res) {
     let userId = req.params.id
     let userInfo = req.body
-
     try {
       let result = await patchUserInfo(userId, userInfo)
       res.send(result)
