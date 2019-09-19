@@ -126,10 +126,33 @@ module.exports = {
 
   registMany: async function (req, res) {
     try {
+      const documents = req.body;
+      const temp = []
+      documents.map((item) => {
+        item.password = item.password.toString()
+        let passwordData = saltHashPassword(item.password)
+        temp.push({
+          username: item.email.split('@')[0] + '--' + Math.random().toString(36).substr(5),
+          email: item.email,
+          password: passwordData.hash,
+          salt: passwordData.salt,
+          info: {
+            fullName: item.fullName,
+            avatar: 'https://ui-avatars.com/api/?name=' + item.fullName,
+            university: item.university,
+            room: item.room,
+          }
+        })        
+      })
+      const result = await User.insertMany(temp);
       console.log(req.body);
-      return await res.json({'ok':'berhasil'});
+      if(result) {
+        return await res.json(result);
+      }
+      return await res.json({ 'Error': 'Something wrong' });
     } catch (error) {
-      return await res.json({'ok':'gagal'});
+      console.log(error)
+      return await res.json({'ok': error });
     }
   },
 
