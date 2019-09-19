@@ -8,7 +8,11 @@ let {
 module.exports = {
   index: async function(req, res) {
     try {
-      let result = await findAllUsers()
+      const filters = {
+        'info.name': req.query.name || '',
+        'info.room': req.query.room || ''
+      }
+      let result = await findAllUsers(filters)
       res.send(result)
     } catch (error) {
       res.status(500).send({

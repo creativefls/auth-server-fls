@@ -1,7 +1,7 @@
 let User = require('../models/user');
 
-async function findAllUsers () {
-  let users = await User.find()
+async function findAllUsers (filters) {
+  let users = await User.find(filters)
 
   return users.map(item => {
     return {
